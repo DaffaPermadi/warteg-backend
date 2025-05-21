@@ -10,6 +10,7 @@ async function authentication(req, res, next) {
         }
 
         const decode = jwt.verify(accessToken, process.env.JWT_SECRET);
+        console.log(decode);
         const user = await User.findOne({
             where: {
                 id: decode.id

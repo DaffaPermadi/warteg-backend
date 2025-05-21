@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken');
 class UserControllers {
     static async userRegister(req, res, next) {
         try {
-            console.log('INI CONTROLLER');
-
             const { name, phone_number } = req.body;
 
             const uniqueValue = await User.findOne({
@@ -54,9 +52,11 @@ class UserControllers {
             }
 
             let userDecode = {
+                id: user.id,
                 name: user.name,
                 phone_number: user.phone_number
             }
+            console.log('user decode ', userDecode);
 
             const token = jwt.sign(userDecode, process.env.JWT_SECRET);
             res.json({ accessToken: token })

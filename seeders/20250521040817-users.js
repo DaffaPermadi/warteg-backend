@@ -15,31 +15,31 @@ module.exports = {
     return await queryInterface.bulkInsert('Users', [
       {
         name: 'John Doe',
-        phone_number: '+6281234567890',
+        phone_number: '081234567890',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         name: 'Jane Smith',
-        phone_number: '+6281234567891',
+        phone_number: '081234567891',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         name: 'Ahmad Rizky',
-        phone_number: '+6281234567892',
+        phone_number: '081234567892',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         name: 'Siti Rahma',
-        phone_number: '+6281234567893',
+        phone_number: '081234567893',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         name: 'Michael Lee',
-        phone_number: '+6281234567894',
+        phone_number: '081234567894',
         createdAt: new Date(),
         updatedAt: new Date()
       }
