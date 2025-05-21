@@ -39,5 +39,6 @@ route.get(
   authentication,
   TransactionController.getTransactionHistoryById
 );
+route.patch('/api/order/:id/payment/mock', TransactionController.processPayment);
 
 module.exports = route;
