@@ -1,16 +1,18 @@
 const { Order } = require("../models");
+const { Order_Item } = require("../models");
+const { Menu_Item } = require("../models");
 
 class CartController {
   static async getCart(req, res) {
     try {
       console.log("Fetching cart for user:", req.user);
-      const userId = req.id; // Assuming you have user ID in the request
+      const userId = req.user.id; // Assuming you have user ID in the request
         const cart = await Order.findOne({
       where: { user_id: userId, status: "cart" },
           include: [
             {
               model: Order_Item,
-              as: "orderItems",
+              as: "items",
               include: [
                 {
                   model: Menu_Item,
