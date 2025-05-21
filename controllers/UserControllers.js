@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const jwt = require('jsonwebtoken');
 
 class UserControllers {
     static async userRegister(req, res, next) {
@@ -35,7 +36,6 @@ class UserControllers {
     }
 
     static async userLogin(req, res, next) {
-        res.send('LOGIN KE CONTROLLER');
         try {
             const { phone_number } = req.body;
 
@@ -44,7 +44,9 @@ class UserControllers {
             }
 
             let user = await User.findOne({
-                phone_number
+                where: {
+                    phone_number
+                }
             })
 
             if(!user) {
