@@ -6,6 +6,7 @@ class ProductControllers {
       const menuItems = await Menu_Item.findAll();
       res.status(200).json(menuItems);
     } catch (error) {
+      console.error(error.message);
       next(error);
     }
   }

@@ -13,7 +13,7 @@ class UserControllers {
             });
 
             if (uniqueValue) {
-                throw { stat: "400", message: "Email already exist!"};
+                throw { stat: "400", message: "Phone number already exist!"};
             }
 
             if(!name || !phone_number) {
