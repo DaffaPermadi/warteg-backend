@@ -1,0 +1,46 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    /**
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+    */
+    const timeSlots = [];
+    const startHour = 9; // 9:00 AM
+    const endHour = 21; // 9:00 PM
+
+    for (let hour = startHour; hour < endHour; hour++) {
+      const startTime = new Date();
+      startTime.setHours(hour, 0, 0, 0);
+      
+      const endTime = new Date();
+      endTime.setHours(hour + 1, 0, 0, 0);
+      
+      timeSlots.push({
+        start_time: startTime,
+        end_time: endTime,
+        max_capacity: 15,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      });
+    }
+
+    return queryInterface.bulkInsert('Time_Slots', timeSlots);
+  },
+
+  async down (queryInterface, Sequelize) {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
+     */
+  }
+};

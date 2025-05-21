@@ -1,0 +1,8 @@
+Nanti copy disini aja dah
+
+npx sequelize-cli db:seed --seed 20250521040817-users.js
+npx sequelize-cli db:seed --seed 20250521040818-menu-items.js
+npx sequelize-cli db:seed --seed 20250521040819-time-slots.js
+npx sequelize-cli db:seed --seed 20250521040820-orders.js
+npx sequelize-cli db:seed --seed 20250521040821-order-items.js
+npx sequelize-cli db:seed --seed 20250521040823-notifications.js

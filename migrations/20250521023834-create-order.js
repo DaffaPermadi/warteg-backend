@@ -15,6 +15,9 @@ module.exports = {
       slot_id: {
         type: Sequelize.INTEGER
       },
+      type: {
+        type: Sequelize.ENUM('dine_in', 'pick_up')
+      },
       status: {
         type: Sequelize.ENUM('cart','waiting_payment', 'confirmed', 'preparing', 'ready', 'picked_up', 'expired')
       },

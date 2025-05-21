@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Time_Slot.hasMany(models.Order, {
+        foreignKey: 'slot_id',
+        as: 'orders'
+      });
+      
     }
   }
   Time_Slot.init({
