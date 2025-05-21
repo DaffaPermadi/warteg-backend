@@ -11,8 +11,8 @@ route.get("/", (req, res) => {
 });
 
 // User routes
-route.post("/api/register", UserControllers.userRegister);
-route.post("/api/login", UserControllers.userLogin);
+route.post("/api/auth/register", UserControllers.userRegister);
+route.post("/api/auth/login", UserControllers.userLogin);
 
 // Product routes
 route.get("/api/menu", ProductControllers.getAllMenuItems);
