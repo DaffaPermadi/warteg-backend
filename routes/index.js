@@ -18,6 +18,7 @@ route.get('/api/menu', ProductControllers.getAllMenuItems);
 route.get('/api/slots', TimeSlotControllers.getAllSlotItems);
 route.get('/api/cart', authentication ,CartControllers.getCart);
 
-route.post('/api/order', authentication, TransactionController.createOrder);
+route.get('/api/order', TransactionController.getOrders);
+
 
 module.exports = route;
