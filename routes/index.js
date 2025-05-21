@@ -1,5 +1,6 @@
 const ProductControllers = require('../controllers/ProductControllers');
 const TimeSlotControllers = require('../controllers/TimeSlotControllers');
+const TransactionController = require('../controllers/TransactionControllers');
 const UserControllers = require('../controllers/UserControllers');
 const CartControllers = require('../controllers/CartControllers');
 const authentication = require('../middleware/authentication');
@@ -16,5 +17,7 @@ route.get('/api/menu', ProductControllers.getAllMenuItems);
 
 route.get('/api/slots', TimeSlotControllers.getAllSlotItems);
 route.get('/api/cart', authentication ,CartControllers.getCart);
+
+route.post('/api/order', authentication, TransactionController.createOrder);
 
 module.exports = route;
