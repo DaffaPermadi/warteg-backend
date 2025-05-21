@@ -20,10 +20,39 @@ module.exports = (sequelize, DataTypes) => {
   Menu_Item.init({
     name: DataTypes.STRING,
     price: DataTypes.INTEGER,
-    available_stock: DataTypes.INTEGER
+    available_stock: DataTypes.INTEGER,
+    category: DataTypes.ENUM('food', 'drinks', 'additional'),
+    description: DataTypes.STRING,
+    image: DataTypes.STRING,
+    total_rating: {
+      type: DataTypes.INTEGER,
+      defaultValue: 5
+    },
+    rating_count: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    },
+    rating: {
+      type: DataTypes.FLOAT,
+      defaultValue: 5.0
+    }
   }, {
     sequelize,
     modelName: 'Menu_Item',
+    hooks: {
+      beforeSave: (menuItem, options) => {
+        if (menuItem.total_rating && menuItem.rating_count) {
+          menuItem.rating = parseFloat((menuItem.total_rating / menuItem.rating_count).toFixed(2));
+        }
+      }
+    }
   });
+  Menu_Item.prototype.toJSON = function () {
+    const values = Object.assign({}, this.get());
+    delete values.total_rating;
+    delete values.rating_count;
+    return values;
+  };
+  
   return Menu_Item;
 };
