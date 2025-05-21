@@ -4,12 +4,42 @@ const {
   Order,
   Order_Item,
   Menu_Item,
+  User
 } = require("../models");
 
 class TransactionController {
   static async getTransactionHistory(req, res, next) {
     try {
-      const orders = await Order.findAll();
+      const orders = await Order.findAll({
+        where: {
+          user_id: req.user.id  // ✅ Optional: if you only want current user's history
+        },
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'name', 'phone_number'] // Include only needed fields
+          },
+          {
+            model: Time_Slot,
+            as: 'slot',
+            attributes: ['id', 'start_time', 'end_time']
+          },
+          {
+            model: Order_Item,
+            as: 'items',
+            include: [
+              {
+                model: Menu_Item,
+                as: 'menuItem',
+                attributes: ['id', 'name', 'price', 'image']
+              }
+            ]
+          }
+        ],
+        order: [['createdAt', 'DESC']]
+      });
+
       res.status(200).json(orders);
     } catch (error) {
       next(error);
