@@ -15,6 +15,18 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER
       },
+      description: {
+        type: Sequelize.STRING
+      },
+      category: {
+        type: Sequelize.ENUM('food', 'drinks','additional')
+      },
+      image: {
+        type: Sequelize.STRING
+      },
+      rating: {
+        type: Sequelize.FLOAT
+      },
       available_stock: {
         type: Sequelize.INTEGER
       },
