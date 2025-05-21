@@ -11,17 +11,17 @@ async function authentication(req, res, next) {
 
         const decode = jwt.verify(accessToken, process.env.JWT_SECRET);
         console.log(decode);
-        const user = await User.findOne({
-            where: {
-                id: decode.id
-            }
-        });
+        // const user = await User.findOne({
+        //     where: {
+        //         id: decode.id
+        //     }
+        // });
 
-        if(!user) {
-            throw { status: 400, message: 'email or password'};
-        }
+        // if(!user) {
+        //     throw { status: 400, message: 'email or password'};
+        // }
 
-        req.user = decode;
+        // req.user = decode;
 
         next();
     } catch (error) {
