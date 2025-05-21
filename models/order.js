@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
     slot_id: DataTypes.INTEGER,
     status: DataTypes.STRING,
-    total_price: DataTypes.INTEGER
+    total_price: DataTypes.INTEGER,
+    type: DataTypes.ENUM('dine_in', 'pick_up'),
+    status: DataTypes.ENUM('cart', 'waiting_payment', 'confirmed', 'preparing', 'ready', 'picked_up', 'expired'),
   }, {
     sequelize,
     modelName: 'Order',

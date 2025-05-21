@@ -16,20 +16,37 @@ module.exports = {
     const startHour = 9; // 9:00 AM
     const endHour = 21; // 9:00 PM
 
-    for (let hour = startHour; hour < endHour; hour++) {
-      const startTime = new Date();
-      startTime.setHours(hour, 0, 0, 0);
-      
-      const endTime = new Date();
-      endTime.setHours(hour + 1, 0, 0, 0);
-      
-      timeSlots.push({
-        start_time: startTime,
-        end_time: endTime,
-        max_capacity: 15,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      });
+    const baseDate = new Date();
+    baseDate.setSeconds(0, 0); // Reset seconds and milliseconds
+
+    for (let hour = startHour; hour <= endHour; hour++) {
+      for (let minute of [0, 30]) {
+        // Skip the last slot at 21:30
+        if (hour === endHour && minute === 30) continue;
+        console.log('hour', hour);
+        console.log('minute', minute);
+        
+        // Create start time
+        const startTime = new Date(baseDate);
+        startTime.setHours(hour, minute);
+        
+        // Create end time (30 minutes later)
+        const endTime = new Date(baseDate);
+        // Handle hour transition properly
+        if (minute === 30) {
+          endTime.setHours(hour + 1, 0);
+        } else {
+          endTime.setHours(hour, minute + 30);
+        }
+        
+        timeSlots.push({
+          start_time: startTime,
+          end_time: endTime,
+          max_capacity: 15,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+      }
     }
 
     return queryInterface.bulkInsert('Time_Slots', timeSlots);

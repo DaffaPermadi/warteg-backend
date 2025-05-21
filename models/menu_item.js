@@ -47,12 +47,6 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
-  Menu_Item.prototype.toJSON = function () {
-    const values = Object.assign({}, this.get());
-    delete values.total_rating;
-    delete values.rating_count;
-    return values;
-  };
   
   return Menu_Item;
 };

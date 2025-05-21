@@ -24,6 +24,14 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
+      rating_count:{
+        type: Sequelize.INTEGER,
+        defaultValue: 1
+      },
+      total_rating: {
+        type: Sequelize.INTEGER,
+        defaultValue: 5
+      },
       rating: {
         type: Sequelize.FLOAT
       },
