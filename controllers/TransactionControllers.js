@@ -49,12 +49,46 @@ class TransactionController {
   static async getTransactionHistoryById(req, res, next) {
     try {
       const { id } = req.params;
-      const orders = await Order.findByPk(id);
-      res.status(200).json(orders);
+  
+      const order = await Order.findOne({
+        where: {
+          id,
+          user_id: req.user.id // ✅ Optional: ensure the order belongs to the user
+        },
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'name', 'phone_number']
+          },
+          {
+            model: Time_Slot,
+            as: 'slot',
+            attributes: ['id', 'start_time', 'end_time']
+          },
+          {
+            model: Order_Item,
+            as: 'items',
+            include: [
+              {
+                model: Menu_Item,
+                as: 'menuItem',
+                attributes: ['id', 'name', 'price', 'image', 'total_rating', 'rating_count']
+              }
+            ]
+          }
+        ]
+      });
+  
+      if (!order) {
+        return res.status(404).json({ message: "Order not found or not yours" });
+      }
+  
+      res.status(200).json(order);
     } catch (error) {
       next(error);
     }
-  }
+  }  
 
   static async CartToOrder(req, res, next) {
     const t = await sequelize.transaction();
