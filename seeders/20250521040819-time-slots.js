@@ -13,8 +13,8 @@ module.exports = {
      * }], {});
     */
     const timeSlots = [];
-    const startHour = 9; // 9:00 AM
-    const endHour = 21; // 9:00 PM
+    const startHour = 16; // 9:00 AM
+    const endHour = 28; // 9:00 PM
 
     const baseDate = new Date();
     baseDate.setSeconds(0, 0); // Reset seconds and milliseconds
