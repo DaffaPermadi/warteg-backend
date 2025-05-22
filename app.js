@@ -13,6 +13,9 @@ app.use(morgan('dev'));
 app.use(routes);
 app.use(errorHandler);
 
+// Product Image routes
+app.use('/images', express.static('public/images'));
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

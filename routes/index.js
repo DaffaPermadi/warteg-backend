@@ -24,6 +24,8 @@ route.post("/api/menu/:id/rating", ProductControllers.addRatingById);
 route.post("/api/rate/:id", ProductControllers.addRatingById);
 route.get("/api/slots", TimeSlotControllers.getAllSlotItems);
 
+
+
 // Time Slot routes
 route.get("/api/slots", TimeSlotControllers.getAllSlotItems);
 
