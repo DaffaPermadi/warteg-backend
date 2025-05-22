@@ -30,7 +30,9 @@ route.get("/api/slots", TimeSlotControllers.getAllSlotItems);
 // Cart routes
 route.get("/api/cart", authentication, CartControllers.getCart);
 route.post("/api/cart", authentication, CartControllers.addToCart);
-route.delete("/api/cart", authentication, CartControllers.removeFromCart);
+route.delete("/api/cart/:order_item_id", authentication, CartControllers.removeFromCart);
+route.patch("/api/cart/:order_item_id", authentication, CartControllers.updateOrderItemQuantity);
+
 
 // Order routes
 route.get(
