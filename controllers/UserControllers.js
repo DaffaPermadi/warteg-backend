@@ -6,6 +6,15 @@ class UserControllers {
         try {
             const { name, phone_number } = req.body;
 
+            if( !name || !phone_number ) {
+                throw { status: 400, message: 'Bad Request' };
+            }
+
+            // Check if the phone number is string
+            if (typeof phone_number !== 'string') {
+                throw { status: 400, message: 'Phone number must be a string' };
+            }
+
             const uniqueValue = await User.findOne({
                 where: {
                     phone_number
